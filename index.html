@@ -83,6 +83,8 @@
             font-size: 1.1em;
             font-weight: 500;
         }
+
+        .header h1 {
             color: #2c3e50;
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -98,6 +100,77 @@
             padding: 15px;
             margin: 20px 0;
             border-radius: 0 10px 10px 0;
+        }
+
+        .video-demo-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .video-demo-button {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .video-demo-button:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .video-container-hidden {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .video-container-visible {
+            display: block;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .video-note-header {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+
+        .drive-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .drive-link:hover {
+            background: linear-gradient(135deg, #3367d6, #137333);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
         }
 
         .nav-tabs {
@@ -127,8 +200,14 @@
         }
 
         .tab-button.active {
-            background: #2c3e50;
+            background: #3498db;
             color: white;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
         }
 
         .content-section {
@@ -501,6 +580,23 @@
                 <strong>💳 Carné:</strong> 2290 - 21 - 20201<br>
                 <strong>📅 Fecha:</strong> 14 de Junio, 2025<br>
                 <strong>📚 Materia:</strong> Inteligencia Artificial
+            </div>
+            
+            <!-- Botón de video debajo de datos personales -->
+            <div class="video-demo-section">
+                <button class="video-demo-button" onclick="openDemoVideo()">
+                    🎥 Ver Video Demostrativo de la Página
+                </button>
+                <div id="video-container" class="video-container-hidden">
+                    <a href="https://drive.google.com/file/d/1Dx-f71Ckm2n6ZUICnPk-x7soW7YruBPF/view?usp=sharing" 
+                       target="_blank" 
+                       class="drive-link">
+                        📂 Abrir Video en Google Drive
+                    </a>
+                    <p class="video-note-header">
+                        <strong>📝 Nota:</strong> Este video muestra el funcionamiento completo de la página web desarrollada, incluyendo navegación interactiva, diagramas de arquitectura y tablas de configuración.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -1179,6 +1275,22 @@ TÉCNICAS DE REGULARIZACIÓN:
 
             // Agregar clase active al botón clickeado
             event.target.classList.add('active');
+        }
+
+        // Función mejorada para abrir el video demostrativo
+        function openDemoVideo() {
+            // Mostrar el enlace al video
+            const videoContainer = document.getElementById('video-container');
+            if (videoContainer.classList.contains('video-container-hidden')) {
+                videoContainer.classList.remove('video-container-hidden');
+                videoContainer.classList.add('video-container-visible');
+                
+                // Abrir automáticamente el video en Google Drive
+                window.open('https://drive.google.com/file/d/1Dx-f71Ckm2n6ZUICnPk-x7soW7YruBPF/view?usp=sharing', '_blank');
+            } else {
+                videoContainer.classList.remove('video-container-visible');
+                videoContainer.classList.add('video-container-hidden');
+            }
         }
 
         // Animaciones y efectos adicionales
